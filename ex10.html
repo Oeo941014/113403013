@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Web Programming Quiz</title>
+<style>
+    /* 這裡是用來畫框框和陰影的 CSS */
+    .code-container {
+        border: 1px solid #333; /* 黑色實線邊框 */
+        padding: 20px;          /* 框內的留白 */
+        background-color: #fff; /* 背景白色 (如果要更像紙張，可以用 #f9f9f9) */
+        box-shadow: 5px 5px 10px rgba(0,0,0,0.1); /* 右下角的陰影效果 */
+        display: inline-block;  /* 讓框框大小隨內容調整 */
+        min-width: 300px;       /* 設定最小寬度 */
+        font-family: Arial, sans-serif; /* 設定一般文字字體 */
+    }
+
+    pre {
+        margin: 0;
+        font-family: "Courier New", Courier, monospace; /* 設定程式碼等寬字體 */
+        color: #333;
+    }
+</style>
 </head>
 <body>
 
-    <p>Code example:</p>
+    <div class="code-container">
+        <p>Code example:</p>
 
-    <pre>
-<code>
-var person = {
+        <pre><code>var person = {
     firstName: "藝齡",
     lastName: "張",
     studentId: "113403013"
-}
-</code>
-    </pre>
+}</code></pre>
+    </div>
 
 </body>
 </html>
