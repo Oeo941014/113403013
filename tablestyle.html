@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Programming Exercise 20</title>
+    <title>Web Programming Exercise 20 (Fixed)</title>
     <style>
         /* 這裡開始是 CSS 樣式 */
         
+        /* 讓整個 body 有點留白，看起來更舒服 (選填) */
+        body {
+            padding: 20px;
+        }
+
         /* 表格基本設定 */
         table {
             border-collapse: collapse; /* 讓邊框合併成單一線條 */
             width: 300px;
-            margin-top: 50px;
-            margin-left: 20px;
+            margin-top: 20px;
         }
 
         /* 單元格樣式 */
         th, td {
             border: 1px solid black;
-            padding: 10px;
+            padding: 8px; /* 稍微縮小 padding */
             text-align: left;
+            font-family: sans-serif; /* 使用比較無襯線的字體 */
         }
 
         /* 標題行：深灰色背景，白色文字 */
@@ -36,14 +41,19 @@
         /* 固定位置的 div 區塊 */
         .fixed-div {
             position: fixed;   /* 關鍵屬性：固定定位 */
-            top: 20px;         /* 距離視窗頂部 20px */
-            right: 20px;       /* 距離視窗右側 20px */
-            width: 120px;
-            height: 100px;
+            top: 40px;         /* 距離視窗頂部 40px，比範例稍低一點點 */
+            right: 40px;       /* 距離視窗右側 40px */
+            
+            /* --- 這部分是調整框框大小和文字分行的關鍵 --- */
+            width: 140px;      /* 縮小寬度，這會讓文字自然分行 */
+            min-height: 100px; /* 設定最小高度 */
+            
             border: 2px solid #8ebf42; /* 綠色邊框 */
-            padding: 10px;
-            font-family: serif;
+            padding: 10px;     /* 內距 */
             background-color: white; /* 加上背景色才不會被後面的內容透過去 */
+            font-family: serif; /* 綠框字體看起來是襯線體 */
+            font-size: 16px;   /* 設定字體大小 */
+            line-height: 1.2;  /* 設定行高，讓分行看起來更緊湊 */
         }
     </style>
 </head>
