@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Programming Exercise 20</title>
+    <style>
+        /* 這裡開始是 CSS 樣式 */
+        
+        /* 表格基本設定 */
+        table {
+            border-collapse: collapse; /* 讓邊框合併成單一線條 */
+            width: 300px;
+            margin-top: 50px;
+            margin-left: 20px;
+        }
+
+        /* 單元格樣式 */
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* 標題行：深灰色背景，白色文字 */
+        .table-header {
+            background-color: #7f7f7f;
+            color: white;
+        }
+
+        /* 第 1 行與第 3 行：黃色背景 */
+        .row-yellow {
+            background-color: #ffff00;
+        }
+
+        /* 固定位置的 div 區塊 */
+        .fixed-div {
+            position: fixed;   /* 關鍵屬性：固定定位 */
+            top: 20px;         /* 距離視窗頂部 20px */
+            right: 20px;       /* 距離視窗右側 20px */
+            width: 120px;
+            height: 100px;
+            border: 2px solid #8ebf42; /* 綠色邊框 */
+            padding: 10px;
+            font-family: serif;
+            background-color: white; /* 加上背景色才不會被後面的內容透過去 */
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <thead>
+            <tr class="table-header">
+                <th>Firstname</th>
+                <th>Lastname</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row-yellow">
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr class="row-yellow">
+                <td>3</td>
+                <td>3</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="fixed-div">
+        This div element has position: fixed;
+    </div>
+
+</body>
+</html>
