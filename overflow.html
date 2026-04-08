@@ -18,18 +18,19 @@
         }
 
         /* 浮動區塊：靠右浮動並設定滾動條 */
-        .float-box {
-            float: right;
-            width: 120px;
-            height: 150px;
-            margin-left: 15px;
-            padding: 10px;
-            border: 2px solid #76b900; /* 綠色邊框 */
-            overflow: auto;            /* 內容過多時顯示滾動條 */
-            background-color: white;
-            font-size: 14px;
-        }
 
+        .float-box {
+        float: right;
+        width: 100px;  /* 寬度調小 */
+        height: 80px;  /* 高度大幅調小，強制內容溢出 */
+        margin-left: 15px;
+        padding: 8px;
+        border: 2px solid #76b900; 
+        overflow: auto; /* 這是產生捲軸的核心 */
+        background-color: white;
+        font-size: 13px;
+        line-height: 1.2;
+    }
         /* 行內區塊：用於強調特定的單字 */
         .inline-highlight {
             display: inline-block;
