@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>響應式佈局練習 - 2x2 修正版</title>
+    <title>響應式佈局練習 - 修正高度與2x2</title>
     <style>
         * {
             box-sizing: border-box;
@@ -15,6 +15,8 @@
             background-color: #5ebfff;
             display: flex;
             justify-content: center;
+            /* 💡 關鍵修正 1：防止容器被預設的 stretch 強制拉伸到 100vh 的高度 */
+            align-items: flex-start; 
             min-height: 100vh;
             padding: 20px;
         }
@@ -23,6 +25,8 @@
             background-color: white;
             width: 100%;
             max-width: 500px;
+            /* 💡 關鍵修正 2：確保容器高度自動貼合內部內容 */
+            height: fit-content; 
             padding: 10px;
             border-radius: 10px;
         }
@@ -36,7 +40,7 @@
 
         .main-content, .footer {
             display: flex;
-            flex-wrap: wrap; /* 關鍵：允許換行 */
+            flex-wrap: wrap; 
         }
 
         .box {
@@ -62,7 +66,6 @@
 
         /* --- 響應式調整 --- */
         @media (max-width: 480px) {
-            /* 1. 藍色方塊：維持垂直三排 */
             .main-content {
                 flex-direction: column;
             }
@@ -71,15 +74,13 @@
                 flex: none;
             }
 
-            /* 2. 灰色方塊：改為一排兩個 (2x2) */
             .footer {
-                flex-direction: row; /* 確保它是橫向排列 */
+                flex-direction: row; 
                 justify-content: space-between;
             }
             .grey {
-                /* 每個佔 50%，減去左右 margin 的空間 */
                 width: calc(50% - 20px); 
-                flex: none; /* 關閉自動填滿，否則會跑掉 */
+                flex: none; 
             }
         }
     </style>
