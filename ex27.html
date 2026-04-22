@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>響應式佈局練習</title>
+    <title>響應式佈局練習 - 2x2 修正版</title>
     <style>
-        /* CSS 樣式區域 */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -13,25 +12,21 @@
         }
 
         body {
-            background-color: #5ebfff; /* 背景藍色 */
+            background-color: #5ebfff;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
             min-height: 100vh;
             padding: 20px;
-            font-family: Arial, sans-serif;
         }
 
         .container {
             background-color: white;
             width: 100%;
-            max-width: 500px; /* 限制最大寬度 */
+            max-width: 500px;
             padding: 10px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* 頂部綠色區塊 */
         .header {
             background-color: #add633;
             height: 120px;
@@ -39,27 +34,25 @@
             border-radius: 5px;
         }
 
-        /* 中間與底部的容器 */
         .main-content, .footer {
             display: flex;
-            flex-wrap: wrap; /* 允許換行 */
+            flex-wrap: wrap; /* 關鍵：允許換行 */
         }
 
-        /* 方塊共通樣式 */
         .box {
             margin: 10px;
             border-radius: 5px;
         }
 
-        /* 藍色方塊樣式 (預設橫排) */
+        /* 藍色方塊 */
         .blue {
             background-color: #00bcd4;
             height: 100px;
-            flex: 1; /* 平分空間 */
-            min-width: 100px; 
+            flex: 1;
+            min-width: 100px;
         }
 
-        /* 灰色小方塊樣式 (預設橫排) */
+        /* 灰色方塊 */
         .grey {
             background-color: #f0f0f0;
             height: 50px;
@@ -67,15 +60,26 @@
             min-width: 40px;
         }
 
-        /* --- 響應式關鍵：當寬度小於 480px 時 --- */
+        /* --- 響應式調整 --- */
         @media (max-width: 480px) {
-            .main-content, .footer {
-                flex-direction: column; /* 改為垂直排列 */
+            /* 1. 藍色方塊：維持垂直三排 */
+            .main-content {
+                flex-direction: column;
+            }
+            .blue {
+                width: calc(100% - 20px);
+                flex: none;
             }
 
-            .blue, .grey {
-                width: calc(100% - 20px); /* 扣掉 margin 後佔滿寬度 */
-                flex: none; /* 取消平分 */
+            /* 2. 灰色方塊：改為一排兩個 (2x2) */
+            .footer {
+                flex-direction: row; /* 確保它是橫向排列 */
+                justify-content: space-between;
+            }
+            .grey {
+                /* 每個佔 50%，減去左右 margin 的空間 */
+                width: calc(50% - 20px); 
+                flex: none; /* 關閉自動填滿，否則會跑掉 */
             }
         }
     </style>
