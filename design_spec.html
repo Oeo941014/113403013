@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>設計稿實作 - 按鈕單一檔案版</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS 樣式開始 --- */
+        
+        /* 基礎設定 */
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f3f3f3; /* 參考圖中 bottom bg color */
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 模擬圖中的網頁容器 */
+        .container {
+            background-color: #ffffff;
+            border: 1px solid #eaeaea;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* 上方工具列 (Header) */
+        .header {
+            background-color: #f6f6f6; /* 參考圖中 header bg color */
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            justify-content: flex-end; /* 按鈕靠右 */
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        /* --- 重點：目標按鈕樣式 (根據標註實作) --- */
+        .btn-info {
+            /* 尺寸與形狀 (size: h22/R8) */
+            height: 22px;
+            border-radius: 8px;
+            
+            /* 顏色 (background #ffffff, outline 1px #2f2f2f) */
+            background-color: #ffffff;
+            border: 1px solid #2f2f2f;
+            
+            /* 字體 (Font style: Roboto Regular 13px, Color #2f2f2f) */
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            color: #2f2f2f;
+            
+            /* 內容排版控制 */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 12px; /* 根據視覺微調左右間距 */
+            cursor: pointer;
+            outline: none;
+            line-height: 1;
+            transition: background-color 0.2s ease;
+            text-decoration: none;
+        }
+
+        /* 滑鼠經過效果 */
+        .btn-info:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* 內容區域模擬 */
+        .content {
+            padding: 60px 40px;
+            text-align: center;
+            color: #707070;
+            font-size: 13px;
+        }
+
+        /* --- CSS 樣式結束 --- */
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <button class="btn-info">查看資訊</button>
+        </header>
+        
+        <main class="content">
+            <div style="border: 1px dashed #ccc; padding: 40px;">
+                這裡可以放置預覽圖片區域 (450x240)
+            </div>
+            <p>Roboto Regular 13px / Color: #707070</p>
+        </main>
+    </div>
+
+</body>
+</html>
