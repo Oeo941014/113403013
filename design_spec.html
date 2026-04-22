@@ -146,27 +146,27 @@
     <script>
         const btn = document.getElementById('toggleBtn');
         const info = document.getElementById('infoList');
-        const img = document.getElementById('mainImg');
+        const container = document.getElementById('scrollContainer');
 
         btn.addEventListener('click', function() {
-            // 切換資訊清單的顯示/隱藏與動畫效果
             if (info.style.display === 'none' || info.style.display === '') {
-                // 展開
                 info.style.display = 'block';
-                setTimeout(() => { info.style.opacity = '1'; }, 10); // 確保 display 變化後才套用透明度動畫
                 btn.textContent = '收起資訊';
                 btn.classList.add('active');
-                // --- 圖片縮小：確保它在文字跳出來後依然比框框小一點 ---
-                img.style.maxHeight = '140px'; 
+                
+                // 自動稍微向下捲動，讓使用者看到資訊出現了
+                setTimeout(() => {
+                    container.scrollTo({
+                        top: 150, 
+                        behavior: 'smooth'
+                    });
+                }, 100);
             } else {
-                // 收起
-                info.style.opacity = '0';
+                info.style.display = 'none';
                 btn.textContent = '查看資訊';
                 btn.classList.remove('active');
-                // 恢復照片大小
-                img.style.maxHeight = '240px';
-                // 等待透明度動畫結束後再真正隱藏
-                setTimeout(() => { info.style.display = 'none'; }, 300); 
+                // 收起時回到頂部
+                container.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
     </script>
