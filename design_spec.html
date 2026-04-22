@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>設計稿實作 - CNA 圖片版</title>
+    <title>設計稿實作 - 捲軸下滑版</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <style>
-        /* 基礎樣式 */
+        /* 基礎設定 */
         body { 
             margin: 0; 
             padding: 20px; 
@@ -14,54 +14,45 @@
             font-family: 'Roboto', sans-serif; 
             display: flex; 
             justify-content: center; 
-            align-items: flex-start;
-            min-height: 100vh;
         }
 
-        /* 模擬圖中的網頁容器 - 符合設計稿寬度 496px */
+        /* --- 容器設定：加入固定高度與捲軸 --- */
         .container { 
             background-color: #ffffff; 
             border: 1px solid #eaeaea; 
             width: 496px; 
-            overflow: hidden; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: all 0.3s ease; /* 容器高度變化也加上動畫 */
+            height: 380px;      /* 設定固定高度，讓內容超過時可以捲動 */
+            overflow-y: auto;    /* 關鍵：垂直方向自動顯示捲軸 */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
         }
-        
-        /* 工具列 */
+
+        /* 自定義捲軸樣式 (Chrome/Edge/Safari) */
+        .container::-webkit-scrollbar { width: 6px; }
+        .container::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+
+        /* 工具列：改為固定在頂部，不隨內容捲動 */
         .header { 
             background-color: #f6f6f6; 
             height: 50px; 
             display: flex; 
             align-items: center; 
             padding: 0 15px; 
-            justify-content: flex-end; /* 按鈕靠右 */
-            border-bottom: 1px solid #eaeaea; 
+            justify-content: flex-end; 
+            border-bottom: 1px solid #eaeaea;
+            position: sticky; /* 固定在頂部 */
+            top: 0;
+            z-index: 10;
         }
         
-        /* 按鈕樣式 (根據標註 h22/R8) */
+        /* 按鈕樣式 */
         .btn-info { 
-            height: 22px; 
-            border-radius: 8px; 
-            background-color: #ffffff; 
-            border: 1px solid #2f2f2f; 
-            font-size: 13px; 
-            color: #2f2f2f; 
-            display: inline-flex; 
-            align-items: center; 
-            padding: 0 12px; 
-            cursor: pointer; 
-            outline: none; 
-            transition: all 0.2s ease;
-            text-decoration: none;
+            height: 22px; border-radius: 8px; background-color: #ffffff; 
+            border: 1px solid #2f2f2f; font-size: 13px; color: #2f2f2f; 
+            display: inline-flex; align-items: center; padding: 0 12px; 
+            cursor: pointer; transition: 0.2s;
         }
-        .btn-info:hover { 
-            background-color: #f0f0f0; 
-        }
-        .btn-info.active { 
-            background-color: #2f2f2f; 
-            color: white; 
-        } /* 點擊展開後的狀態 */
+        .btn-info.active { background-color: #2f2f2f; color: white; }
 
         /* 內容顯示區 */
         .content-area { 
@@ -69,56 +60,43 @@
             display: flex; 
             flex-direction: column; 
             align-items: center;
-            background-color: #fff;
         }
 
-        /* --- 重點：照片樣式 --- */
+        /* 照片樣式：維持固定尺寸不變 */
         .preview-img {
-            /* 預設狀態 (大圖) */
-            width: 90%;          /* 寬度不佔滿，確保比框框小一點 */
-            max-width: 450px;    /* 參考圖中預覽圖片寬度 */
-            height: auto;
-            max-height: 240px;   /* 參考圖中預覽圖片高度 */
-            object-fit: contain; /* 改為 contain，完整顯示 CNA 圖片內容，不裁剪 */
+            width: 450px;       /* 鎖定寬度 */
+            height: 240px;      /* 鎖定高度 */
+            object-fit: cover; 
             border: 1px solid #eee;
-            margin-bottom: 10px;
-            transition: all 0.3s ease; /* 圖片縮小動畫 */
-            background-color: #fafafa; /* contain 模式下補白處的背景色 */
+            margin-bottom: 15px;
+            flex-shrink: 0;     /* 防止圖片被擠壓 */
         }
 
-        /* --- 資訊清單樣式 (參考圖中展開樣式) --- */
+        /* 資訊清單樣式 */
         #infoList {
-            display: none;       /* 預設隱藏 */
+            display: none;      /* 預設隱藏 */
             width: 100%;
-            font-size: 12px;     /* 參考圖中 13px 微調為 12px 讓版面更緊湊 */
+            font-size: 12px;
             color: #2f2f2f;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            margin-top: 5px;
         }
 
         .info-item {
-            background-color: #e8ffef; /* 淺綠色背景 */
-            border-bottom: 1px solid #cfddff; /* 間隔線顏色 */
-            padding: 6px 15px;   /* 增加上下間距讓字更好讀 */
+            background-color: #e8ffef; 
+            border-bottom: 1px solid #cfddff; 
+            padding: 8px 15px;
             margin: 2px 0;
             display: flex;
-            justify-content: flex-start;
         }
 
-        .info-label { 
-            width: 85px; 
-            color: #707070;      /* 標籤顏色 */
-        } 
-        .info-value { 
-            color: #0084ff;      /* 路徑或特定文字顏色 */
-            word-break: break-all; /* 超長路徑強制斷行 */
-        }
+        .info-label { width: 85px; color: #707070; } 
+        .info-value { color: #0084ff; word-break: break-all; }
 
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="container" id="scrollContainer">
         <header class="header">
             <button class="btn-info" id="toggleBtn">查看資訊</button>
         </header>
@@ -126,15 +104,14 @@
         <div class="content-area">
             <img 
                 src="https://imgcdn.cna.com.tw/www/WebPhotos/800/20260111/2000x1267_wmky_855732567388_202509170217000000.jpg" 
-                alt="CNA中央社圖片預覽" 
-                class="preview-img" 
-                id="mainImg"
+                alt="CNA圖片" 
+                class="preview-img"
             >
             
             <div id="infoList">
                 <div class="info-item"><span class="info-label">修改日期：</span><span>2026/04/22 10:16</span></div>
                 <div class="info-item"><span class="info-label">類別：</span><span>JPEG</span></div>
-                <div class="info-item"><span class="info-label">大小：</span><span>1.2 MB (2000x1267)</span></div>
+                <div class="info-item"><span class="info-label">大小：</span><span>1.2 MB</span></div>
                 <div class="info-item">
                     <span class="info-label">路徑：</span>
                     <span class="info-value">https://imgcdn.cna.com.tw/www/WebPhotos/800/20260111/2000x1267_wmky_855732567388_202509170217000000.jpg</span>
