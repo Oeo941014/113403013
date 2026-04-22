@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Bootstrap Page</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
+    <style>
+        /* 額外加上一點樣式，讓外框與內距看起來更像題目截圖的樣子 */
+        .demo-container {
+            border: 1px solid #e3e3e3;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 4px;
+            box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container demo-container">
+
+        <div class="jumbotron">
+            <h1>My First Bootstrap Page</h1>
+        </div>
+
+        <div class="form-group">
+            <label>Input:</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="alert alert-success">
+            Successful alert
+        </div>
+
+        <button type="button" class="btn btn-default">Button</button>
+        
+        <span class="badge">badge</span>
+
+    </div>
+
+</body>
+</html>
