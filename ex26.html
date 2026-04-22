@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 圖片樣式練習</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 50px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 共同樣式：設定高度為 300px 並防止變形 */
+        img {
+            height: 300px;
+            object-fit: cover; /* 關鍵：確保圖片不失真 */
+        }
+
+        /* 左側圖片：圓角 18px，寬度 33% */
+        .image-left {
+            width: 33%;
+            border-radius: 18px;
+        }
+
+        /* 中間圖片：圓形，寬高皆為 150px，加上邊框 */
+        .image-middle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* 變成圓形 */
+            border: 2px solid #333; /* 加上 border */
+        }
+
+        /* 右側圖片：有失真（Distortion） */
+        .image-right {
+            width: 33%;
+            /* 為了呈現作業要求的 "distortion"，這裡故意不使用 object-fit */
+            object-fit: fill; 
+        }
+    </style>
+</head>
+<body>
+
+    <img src="https://via.placeholder.com/600x800" alt="Eiffel Tower" class="image-left">
+
+    <img src="https://via.placeholder.com/300" alt="Landscape" class="image-middle">
+
+    <img src="https://via.placeholder.com/600x800" alt="Eiffel Tower" class="image-right">
+
+</body>
+</html>
