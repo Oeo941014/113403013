@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>可持续发展目标 · SDGs 愿景展板</title>
-    <!-- Google Fonts 提升精致度 -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <title>可持续发展目标 · SDGs 图标点击展示</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -18,11 +17,15 @@
             background: #f8fafc;
             color: #0a2540;
             padding: 2rem 1.5rem 3rem;
-            scroll-behavior: smooth;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
         }
 
@@ -37,109 +40,72 @@
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            letter-spacing: -0.3px;
-        }
-        .hero h1 i {
-            background: none;
-            color: #2b5f8a;
-            margin-right: 8px;
         }
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #2c5575;
-            margin-top: 0.8rem;
-            font-weight: 400;
-            max-width: 720px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .badge {
-            display: inline-block;
-            background: #eef2ff;
-            border-radius: 40px;
-            padding: 0.3rem 1rem;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #1e4a76;
-            margin-bottom: 0.8rem;
+            margin-top: 0.5rem;
         }
 
-        /* 网格布局 */
+        /* 图标网格 — 只显示圆形图标，没有文字 */
         .sdg-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 220px));
+            grid-template-columns: repeat(auto-fill, minmax(110px, 130px));
             justify-content: center;
-            gap: 1.8rem;
-            margin-top: 1rem;
+            gap: 2rem 1.5rem;
+            margin: 2rem 0;
         }
 
-        /* 卡片样式 */
-        .sdg-card {
-            background: white;
-            border-radius: 32px;
-            padding: 1.4rem 0.8rem 1.2rem;
-            text-align: center;
+        /* 可点击的图标容器 */
+        .sdg-icon {
             cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.02);
-            border: 1px solid rgba(166, 194, 220, 0.3);
+            text-align: center;
+            transition: transform 0.2s ease;
         }
-        .sdg-card:hover {
+        .sdg-icon:hover {
             transform: translateY(-6px);
-            box-shadow: 0 20px 28px -12px rgba(0, 32, 64, 0.15), 0 0 0 1px #cbdde9;
-            border-color: #b9d3f0;
         }
-        /* 图标圆形背景 */
+
+        /* 圆形背景 */
         .icon-circle {
             background: linear-gradient(145deg, #edf4fc, #e2edf7);
-            width: 90px;
-            height: 90px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
+            margin: 0 auto;
             transition: all 0.2s;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.02), 0 6px 12px -6px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 18px -8px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(166, 194, 220, 0.4);
         }
-        .sdg-card:hover .icon-circle {
+        .sdg-icon:hover .icon-circle {
             background: linear-gradient(145deg, #e6f0fa, #dae8f2);
-            transform: scale(1.02);
+            box-shadow: 0 14px 22px -10px rgba(0, 0, 0, 0.15);
         }
-        /* 自定义图片样式 */
+
         .icon-circle img {
-            width: 52px;
+            width: 56px;
             height: auto;
             display: block;
             object-fit: contain;
         }
-        .goal-number {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+
+        /* 可选：在图标下方显示很小的小圆点编号（极简风格，不占空间），若不要可以删除 */
+        .icon-label {
+            margin-top: 0.6rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #6b8eaa;
             background: #eef3fc;
             display: inline-block;
-            padding: 0.2rem 0.7rem;
-            border-radius: 40px;
-            color: #1f6392;
-            margin-bottom: 0.6rem;
-        }
-        .goal-title {
-            font-weight: 700;
-            font-size: 1rem;
-            line-height: 1.3;
-            color: #0b3552;
-            margin-top: 0.2rem;
-            padding: 0 0.2rem;
-        }
-        .goal-short {
-            font-size: 0.7rem;
-            color: #5b7f9c;
-            margin-top: 0.5rem;
-            opacity: 0.8;
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            backdrop-filter: blur(2px);
         }
 
-        /* 悬浮视窗样式 */
+        /* 悬浮视窗样式 (完全保留原有功能) */
         .sdg-popup {
             position: fixed;
             z-index: 1000;
@@ -227,7 +193,7 @@
         }
         .info-tip {
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 2rem;
             font-size: 0.85rem;
             color: #5584a8;
             background: #eef3fa;
@@ -238,7 +204,7 @@
             border-radius: 40px;
         }
         footer {
-            margin-top: 3rem;
+            margin-top: 2.5rem;
             text-align: center;
             font-size: 0.75rem;
             color: #5e7f9a;
@@ -250,20 +216,21 @@
             }
             .sdg-grid {
                 gap: 1.2rem;
-                grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(85px, 95px));
             }
             .icon-circle {
-                width: 70px;
-                height: 70px;
+                width: 75px;
+                height: 75px;
             }
             .icon-circle img {
                 width: 42px;
             }
-            .goal-title {
-                font-size: 0.85rem;
+            .icon-label {
+                font-size: 0.6rem;
+                margin-top: 0.4rem;
             }
             .sdg-popup {
-                max-width: 280px;
+                max-width: 260px;
             }
         }
     </style>
@@ -272,21 +239,22 @@
 
 <div class="container">
     <div class="hero">
-        <div class="badge"><i class="fas fa-globe-americas"></i> 联合国2030议程</div>
-        <h1>🌱 可持续发展目标 <span style="font-weight: 500;">SDGs</span></h1>
-        <p>点击任意目标图标，弹出详细介绍视窗 — 为了人类与地球更美好的未来，17个变革行动。</p>
+        <h1>🌱 可持续发展目标 · SDGs</h1>
+        <p>点击任意图标 — 查看详细说明</p>
     </div>
 
+    <!-- 只有图标的网格容器 -->
     <div class="sdg-grid" id="sdgGrid"></div>
+
     <div class="info-tip">
-        ✨ 轻点任何一个目标卡片 → 浮动视窗立即显示详细说明
+        ✨ 轻触任何一个图标 → 弹出详细介绍
     </div>
     <footer>
-        🌍 消除贫困 · 保护地球 · 确保繁荣 | 共同落实可持续发展目标
+        🌍 消除贫困 · 保护地球 · 确保繁荣 | 17个全球目标
     </footer>
 </div>
 
-<!-- 悬浮视窗 DOM -->
+<!-- 悬浮视窗 (结构不变) -->
 <div id="sdgPopup" class="sdg-popup">
     <div class="popup-inner">
         <button class="close-popup" id="closePopupBtn">✕</button>
@@ -306,10 +274,7 @@
 </div>
 
 <script>
-    // --------------------------------------------------------------
-    // SDG 完整数据 (共17个目标)
-    // 图片路径使用 IMAGE/goalX.png
-    // --------------------------------------------------------------
+    // SDGs 数据 (包含图片路径及详细说明)
     const sdgData = [
         { id: 1, title: "无贫穷", shortDesc: "消除各地一切形式的贫穷", description: "在全世界消除一切形式的贫困。确保穷人和弱势群体享有平等经济资源、基本服务、土地所有权、技术等权利，增强抵御灾害的能力。", iconFile: "IMAGE/goal1.png" },
         { id: 2, title: "零饥饿", shortDesc: "消除饥饿，实现粮食安全", description: "消除饥饿，实现粮食安全，改善营养状况和促进可持续农业。保障所有人全年都有安全、营养且充足的食物。", iconFile: "IMAGE/goal2.png" },
@@ -339,9 +304,8 @@
     const popupDescElem = document.getElementById('popupDesc');
     const closeBtn = document.getElementById('closePopupBtn');
 
-    let activeCard = null;
+    let activeIcon = null;
 
-    // 更新弹窗内容
     function updatePopupContent(goal) {
         popupImg.src = goal.iconFile;
         popupImg.alt = goal.title;
@@ -350,27 +314,23 @@
         popupDescElem.innerText = goal.description;
     }
 
-    // 显示弹窗并定位在卡片旁边
-    function showPopupNearCard(cardElement, goalData) {
-        if (!cardElement || !popup) return;
+    function showPopupNearElement(element, goalData) {
+        if (!element || !popup) return;
         updatePopupContent(goalData);
 
-        const cardRect = cardElement.getBoundingClientRect();
+        const rect = element.getBoundingClientRect();
         const popupWidth = popup.offsetWidth;
         const popupHeight = popup.offsetHeight;
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
 
-        let leftPos = cardRect.right + 14;
-        let topPos = cardRect.top + (cardRect.height / 2) - (popupHeight / 2);
+        let leftPos = rect.right + 14;
+        let topPos = rect.top + (rect.height / 2) - (popupHeight / 2);
 
-        // 超出右侧则显示在左侧
         if (leftPos + popupWidth > viewportWidth - 12) {
-            leftPos = cardRect.left - popupWidth - 14;
+            leftPos = rect.left - popupWidth - 14;
         }
-        // 超出左侧则贴边
         if (leftPos < 10) leftPos = 12;
-        // 垂直边界修正
         if (topPos < 10) topPos = 12;
         if (topPos + popupHeight > viewportHeight - 10) {
             topPos = viewportHeight - popupHeight - 12;
@@ -379,75 +339,65 @@
         popup.style.left = leftPos + 'px';
         popup.style.top = topPos + 'px';
         popup.classList.add('active');
-        activeCard = cardElement;
+        activeIcon = element;
     }
 
     function hidePopup() {
         if (popup) {
             popup.classList.remove('active');
-            activeCard = null;
+            activeIcon = null;
         }
     }
 
-    // 动态生成所有卡片
-    function buildGrid() {
+    // 生成只有图标的网格
+    function buildIconGrid() {
         if (!gridContainer) return;
         gridContainer.innerHTML = '';
 
         sdgData.forEach(goal => {
-            const card = document.createElement('div');
-            card.className = 'sdg-card';
-            card.setAttribute('data-goal-id', goal.id);
+            // 每个图标的外层容器
+            const iconWrapper = document.createElement('div');
+            iconWrapper.className = 'sdg-icon';
+            iconWrapper.setAttribute('data-id', goal.id);
 
-            // 圆形图标区
-            const iconCircle = document.createElement('div');
-            iconCircle.className = 'icon-circle';
+            // 圆形背景
+            const circleDiv = document.createElement('div');
+            circleDiv.className = 'icon-circle';
             const img = document.createElement('img');
             img.src = goal.iconFile;
             img.alt = goal.title;
-            iconCircle.appendChild(img);
+            circleDiv.appendChild(img);
 
-            const goalNumberSpan = document.createElement('div');
-            goalNumberSpan.className = 'goal-number';
-            goalNumberSpan.innerText = `SDG ${goal.id}`;
+            // 可选：下方极小编号（如果想完全不要文字，可以注释掉下面三行）
+            const labelSpan = document.createElement('div');
+            labelSpan.className = 'icon-label';
+            labelSpan.innerText = `SDG ${goal.id}`;
+            
+            iconWrapper.appendChild(circleDiv);
+            iconWrapper.appendChild(labelSpan);  // 若不要编号，删除此行即可
 
-            const titleDiv = document.createElement('div');
-            titleDiv.className = 'goal-title';
-            titleDiv.innerText = goal.title;
-
-            const shortDiv = document.createElement('div');
-            shortDiv.className = 'goal-short';
-            shortDiv.innerText = goal.shortDesc;
-
-            card.appendChild(iconCircle);
-            card.appendChild(goalNumberSpan);
-            card.appendChild(titleDiv);
-            card.appendChild(shortDiv);
-
-            // 点击卡片显示弹窗
-            card.addEventListener('click', (e) => {
+            // 点击事件
+            iconWrapper.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const targetGoal = sdgData.find(g => g.id === goal.id);
-                if (targetGoal) showPopupNearCard(card, targetGoal);
+                if (targetGoal) showPopupNearElement(iconWrapper, targetGoal);
             });
 
-            gridContainer.appendChild(card);
+            gridContainer.appendChild(iconWrapper);
         });
     }
 
-    // 全局点击关闭弹窗（点击非卡片非弹窗区域）
+    // 点击页面其他区域关闭弹窗
     document.addEventListener('click', (e) => {
         if (!popup.classList.contains('active')) return;
-        const isCardClick = e.target.closest('.sdg-card') !== null;
+        const isIconClick = e.target.closest('.sdg-icon') !== null;
         const isPopupClick = e.target.closest('.sdg-popup') !== null;
-        if (!isCardClick && !isPopupClick) hidePopup();
+        if (!isIconClick && !isPopupClick) hidePopup();
     });
 
-    // 滚动 / 窗口大小改变时关闭弹窗
     window.addEventListener('resize', () => hidePopup());
     window.addEventListener('scroll', () => hidePopup(), { passive: true });
 
-    // 关闭按钮
     if (closeBtn) {
         closeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -455,8 +405,7 @@
         });
     }
 
-    // 初始化
-    buildGrid();
+    buildIconGrid();
 </script>
 </body>
 </html>
