@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>可持续发展目标 · SDGs 纯图标点击展示</title>
+    <title>SDGs 纯图标点击</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -215,19 +215,16 @@
 
 <div class="container">
     <div class="hero">
-        <h1>🌱 可持续发展目标 · SDGs</h1>
-        <p>点击任意图标 — 查看详细说明</p>
+        <h1>SDGS</h1>
+        <p>SUSTAINABLE DEVELOPEMENT GOAL</p>
     </div>
 
     <!-- 纯图标网格 -->
     <div class="sdg-grid" id="sdgGrid"></div>
 
     <div class="info-tip">
-        ✨ 轻触任何一个图标 → 弹出详细介绍
+        ✨ Tap any icon → a detailed description will pop up
     </div>
-    <footer>
-        🌍 消除贫困 · 保护地球 · 确保繁荣 | 17个全球目标
-    </footer>
 </div>
 
 <!-- 悬浮视窗 -->
@@ -252,23 +249,23 @@
 <script>
     // SDGs 数据 (包含图片路径及详细说明)
     const sdgData = [
-        { id: 1, title: "无贫穷", shortDesc: "消除各地一切形式的贫穷", description: "在全世界消除一切形式的贫困。确保穷人和弱势群体享有平等经济资源、基本服务、土地所有权、技术等权利，增强抵御灾害的能力。", iconFile: "IMAGE/goal1.png" },
-        { id: 2, title: "零饥饿", shortDesc: "消除饥饿，实现粮食安全", description: "消除饥饿，实现粮食安全，改善营养状况和促进可持续农业。保障所有人全年都有安全、营养且充足的食物。", iconFile: "IMAGE/goal2.png" },
-        { id: 3, title: "良好健康与福祉", shortDesc: "确保健康的生活方式", description: "确保健康的生活方式，促进各年龄段人群的福祉。降低母婴死亡率，终结艾滋病、结核病等流行病，并普及基本医疗服务。", iconFile: "IMAGE/goal3.png" },
-        { id: 4, title: "优质教育", shortDesc: "包容公平的优质教育", description: "确保包容和公平的优质教育，让全民终身享有学习机会。实现所有男女童完成免费中小学教育，大幅提高拥有相关就业技能的人数。", iconFile: "IMAGE/goal4.png" },
-        { id: 5, title: "性别平等", shortDesc: "实现性别平等，赋能妇女", description: "实现性别平等，增强所有妇女和女童的权能。消除一切形式的歧视与暴力，确保女性平等参与领导与决策。", iconFile: "IMAGE/goal5.png" },
-        { id: 6, title: "清洁饮水和卫生设施", shortDesc: "人人享有水和环境卫生", description: "为所有人提供水和环境卫生并对其进行可持续管理。实现安全饮用水普遍获取，减少水污染，改善水质及用水效率。", iconFile: "IMAGE/goal6.png" },
-        { id: 7, title: "经济适用的清洁能源", shortDesc: "可负担的现代能源", description: "确保人人获得负担得起、可靠和可持续的现代能源。大幅增加可再生能源比例，提升能源效率，加强清洁能源技术合作。", iconFile: "IMAGE/goal7.png" },
-        { id: 8, title: "体面工作和经济增长", shortDesc: "促进持久经济增长", description: "促进持久、包容和可持续经济增长，实现充分和生产性就业，确保人人获得体面工作。支持创业、消除强迫劳动。", iconFile: "IMAGE/goal8.png" },
-        { id: 9, title: "产业、创新和基础设施", shortDesc: "可持续基建与工业化", description: "建造具备抵御灾害能力的基础设施，促进包容可持续工业化，推动创新。升级技术，支持中小型企业获得金融资源。", iconFile: "IMAGE/goal9.png" },
-        { id: 10, title: "减少不平等", shortDesc: "减少国家内部及外部不平等", description: "减少国家内部和国家之间的不平等。提升社会、经济和政治包容性，确保机会均等，促进有序、安全移民。", iconFile: "IMAGE/goal10.png" },
-        { id: 11, title: "可持续城市和社区", shortDesc: "包容、安全、韧性的城市", description: "建设包容、安全、有抵御灾害能力和可持续的城市。改善贫民窟居住条件，提供绿色公共空间与可持续交通。", iconFile: "IMAGE/goal11.png" },
-        { id: 12, title: "负责任消费和生产", shortDesc: "可持续消费及生产模式", description: "确保可持续消费和生产模式。高效利用资源，减少粮食浪费，对化学品和废物实施环保管理，推广生命周期思维。", iconFile: "IMAGE/goal12.png" },
-        { id: 13, title: "气候行动", shortDesc: "应对气候变化及其影响", description: "采取紧急行动应对气候变化及其影响。加强抵御气候灾害能力，将应对措施纳入国家政策，提升气候变化教育。", iconFile: "IMAGE/goal13.png" },
-        { id: 14, title: "水下生物", shortDesc: "保护海洋和海洋资源", description: "保护和可持续利用海洋及海洋资源以促进可持续发展。减少海洋污染，保护沿海生态系统，打击非法捕捞。", iconFile: "IMAGE/goal14.png" },
-        { id: 15, title: "陆地生物", shortDesc: "保护陆地生态系统", description: "保护、恢复和促进可持续利用陆地生态系统，可持续管理森林，防治荒漠化，遏制生物多样性丧失，停止偷猎。", iconFile: "IMAGE/goal15.png" },
-        { id: 16, title: "和平、正义与强大机构", shortDesc: "创建和平包容的社会", description: "创建和平、包容的社会以促进可持续发展，让所有人都能诉诸司法，在各级建立有效、负责和包容的机构。减少暴力及腐败。", iconFile: "IMAGE/goal16.png" },
-        { id: 17, title: "促进目标实现的伙伴关系", shortDesc: "加强全球可持续发展伙伴关系", description: "加强执行手段，重振可持续发展全球伙伴关系。动员资源，促进技术转让、能力建设，建立多利益攸关方伙伴关系。", iconFile: "IMAGE/goal17.png" }
+        { id: 1, title: "No Poverty", shortDesc: "消除各地一切形式的贫穷", description: "在全世界消除一切形式的贫困。确保穷人和弱势群体享有平等经济资源、基本服务、土地所有权、技术等权利，增强抵御灾害的能力。", iconFile: "IMAGE/goal1.png" },
+        { id: 2, title: "Zero Hunger", shortDesc: "消除饥饿，实现粮食安全", description: "消除饥饿，实现粮食安全，改善营养状况和促进可持续农业。保障所有人全年都有安全、营养且充足的食物。", iconFile: "IMAGE/goal2.png" },
+        { id: 3, title: "Good Health and Well-Being", shortDesc: "确保健康的生活方式", description: "确保健康的生活方式，促进各年龄段人群的福祉。降低母婴死亡率，终结艾滋病、结核病等流行病，并普及基本医疗服务。", iconFile: "IMAGE/goal3.png" },
+        { id: 4, title: "Quality Education", shortDesc: "包容公平的优质教育", description: "确保包容和公平的优质教育，让全民终身享有学习机会。实现所有男女童完成免费中小学教育，大幅提高拥有相关就业技能的人数。", iconFile: "IMAGE/goal4.png" },
+        { id: 5, title: "Gender Equality", shortDesc: "实现性别平等，赋能妇女", description: "实现性别平等，增强所有妇女和女童的权能。消除一切形式的歧视与暴力，确保女性平等参与领导与决策。", iconFile: "IMAGE/goal5.png" },
+        { id: 6, title: "Clean Water and Sanitation", shortDesc: "人人享有水和环境卫生", description: "为所有人提供水和环境卫生并对其进行可持续管理。实现安全饮用水普遍获取，减少水污染，改善水质及用水效率。", iconFile: "IMAGE/goal6.png" },
+        { id: 7, title: "Affordable and Clean Energy", shortDesc: "可负担的现代能源", description: "确保人人获得负担得起、可靠和可持续的现代能源。大幅增加可再生能源比例，提升能源效率，加强清洁能源技术合作。", iconFile: "IMAGE/goal7.png" },
+        { id: 8, title: "Decent Work and Economic Growth", shortDesc: "促进持久经济增长", description: "促进持久、包容和可持续经济增长，实现充分和生产性就业，确保人人获得体面工作。支持创业、消除强迫劳动。", iconFile: "IMAGE/goal8.png" },
+        { id: 9, title: "Industry, Innovation and Infrastructure", shortDesc: "可持续基建与工业化", description: "建造具备抵御灾害能力的基础设施，促进包容可持续工业化，推动创新。升级技术，支持中小型企业获得金融资源。", iconFile: "IMAGE/goal9.png" },
+        { id: 10, title: "Reduced Inequalities", shortDesc: "减少国家内部及外部不平等", description: "减少国家内部和国家之间的不平等。提升社会、经济和政治包容性，确保机会均等，促进有序、安全移民。", iconFile: "IMAGE/goal10.png" },
+        { id: 11, title: "Sustainable Cities and Communities", shortDesc: "包容、安全、韧性的城市", description: "建设包容、安全、有抵御灾害能力和可持续的城市。改善贫民窟居住条件，提供绿色公共空间与可持续交通。", iconFile: "IMAGE/goal11.png" },
+        { id: 12, title: "Responsible Consumption and Production", shortDesc: "可持续消费及生产模式", description: "确保可持续消费和生产模式。高效利用资源，减少粮食浪费，对化学品和废物实施环保管理，推广生命周期思维。", iconFile: "IMAGE/goal12.png" },
+        { id: 13, title: "Climate Action", shortDesc: "应对气候变化及其影响", description: "采取紧急行动应对气候变化及其影响。加强抵御气候灾害能力，将应对措施纳入国家政策，提升气候变化教育。", iconFile: "IMAGE/goal13.png" },
+        { id: 14, title: "Life Below Water", shortDesc: "保护海洋和海洋资源", description: "保护和可持续利用海洋及海洋资源以促进可持续发展。减少海洋污染，保护沿海生态系统，打击非法捕捞。", iconFile: "IMAGE/goal14.png" },
+        { id: 15, title: "Life on Land", shortDesc: "保护陆地生态系统", description: "保护、恢复和促进可持续利用陆地生态系统，可持续管理森林，防治荒漠化，遏制生物多样性丧失，停止偷猎。", iconFile: "IMAGE/goal15.png" },
+        { id: 16, title: "Peace, Justice and Strong Institutions", shortDesc: "创建和平包容的社会", description: "创建和平、包容的社会以促进可持续发展，让所有人都能诉诸司法，在各级建立有效、负责和包容的机构。减少暴力及腐败。", iconFile: "IMAGE/goal16.png" },
+        { id: 17, title: "Partnerships for the Goals", shortDesc: "加强全球可持续发展伙伴关系", description: "加强执行手段，重振可持续发展全球伙伴关系。动员资源，促进技术转让、能力建设，建立多利益攸关方伙伴关系。", iconFile: "IMAGE/goal17.png" }
     ];
 
     // DOM 元素
