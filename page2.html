@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>可持续发展目标 · SDGs 图标点击展示</title>
+    <title>可持续发展目标 · SDGs 纯图标点击展示</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -31,7 +31,7 @@
 
         .hero {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
         .hero h1 {
             font-size: 2.4rem;
@@ -47,16 +47,16 @@
             margin-top: 0.5rem;
         }
 
-        /* 图标网格 — 只显示圆形图标，没有文字 */
+        /* 图标网格 — 只有图片，没有任何边框/圆圈 */
         .sdg-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 130px));
+            grid-template-columns: repeat(auto-fill, minmax(100px, 120px));
             justify-content: center;
-            gap: 2rem 1.5rem;
+            gap: 2rem 1.8rem;
             margin: 2rem 0;
         }
 
-        /* 可点击的图标容器 */
+        /* 可点击的图片容器 */
         .sdg-icon {
             cursor: pointer;
             text-align: center;
@@ -66,46 +66,27 @@
             transform: translateY(-6px);
         }
 
-        /* 圆形背景 */
-        .icon-circle {
-            background: linear-gradient(145deg, #edf4fc, #e2edf7);
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            transition: all 0.2s;
-            box-shadow: 0 10px 18px -8px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(166, 194, 220, 0.4);
-        }
-        .sdg-icon:hover .icon-circle {
-            background: linear-gradient(145deg, #e6f0fa, #dae8f2);
-            box-shadow: 0 14px 22px -10px rgba(0, 0, 0, 0.15);
-        }
-
-        .icon-circle img {
-            width: 56px;
+        /* 图片本身样式 — 无边框无背景 */
+        .sdg-icon img {
+            width: 80px;
             height: auto;
             display: block;
+            margin: 0 auto;
             object-fit: contain;
         }
 
-        /* 可选：在图标下方显示很小的小圆点编号（极简风格，不占空间），若不要可以删除 */
+        /* 可选：在图片下方显示极简编号（不要的话可以删除下一块） */
         .icon-label {
             margin-top: 0.6rem;
             font-size: 0.7rem;
             font-weight: 500;
             color: #6b8eaa;
-            background: #eef3fc;
+            background: transparent;
             display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 30px;
-            backdrop-filter: blur(2px);
+            padding: 0;
         }
 
-        /* 悬浮视窗样式 (完全保留原有功能) */
+        /* 悬浮视窗样式 (完全保留) */
         .sdg-popup {
             position: fixed;
             z-index: 1000;
@@ -215,19 +196,14 @@
                 padding: 1.2rem;
             }
             .sdg-grid {
-                gap: 1.2rem;
-                grid-template-columns: repeat(auto-fill, minmax(85px, 95px));
+                gap: 1.5rem;
+                grid-template-columns: repeat(auto-fill, minmax(75px, 85px));
             }
-            .icon-circle {
-                width: 75px;
-                height: 75px;
-            }
-            .icon-circle img {
-                width: 42px;
+            .sdg-icon img {
+                width: 60px;
             }
             .icon-label {
                 font-size: 0.6rem;
-                margin-top: 0.4rem;
             }
             .sdg-popup {
                 max-width: 260px;
@@ -243,7 +219,7 @@
         <p>点击任意图标 — 查看详细说明</p>
     </div>
 
-    <!-- 只有图标的网格容器 -->
+    <!-- 纯图标网格 -->
     <div class="sdg-grid" id="sdgGrid"></div>
 
     <div class="info-tip">
@@ -254,7 +230,7 @@
     </footer>
 </div>
 
-<!-- 悬浮视窗 (结构不变) -->
+<!-- 悬浮视窗 -->
 <div id="sdgPopup" class="sdg-popup">
     <div class="popup-inner">
         <button class="close-popup" id="closePopupBtn">✕</button>
@@ -349,34 +325,29 @@
         }
     }
 
-    // 生成只有图标的网格
+    // 生成纯图标网格 (无任何背景、边框)
     function buildIconGrid() {
         if (!gridContainer) return;
         gridContainer.innerHTML = '';
 
         sdgData.forEach(goal => {
-            // 每个图标的外层容器
             const iconWrapper = document.createElement('div');
             iconWrapper.className = 'sdg-icon';
             iconWrapper.setAttribute('data-id', goal.id);
 
-            // 圆形背景
-            const circleDiv = document.createElement('div');
-            circleDiv.className = 'icon-circle';
+            // 直接放图片，没有任何包裹层
             const img = document.createElement('img');
             img.src = goal.iconFile;
             img.alt = goal.title;
-            circleDiv.appendChild(img);
 
-            // 可选：下方极小编号（如果想完全不要文字，可以注释掉下面三行）
+            // 可选：图片下方显示编号（如果不需要，删除或注释下面三行）
             const labelSpan = document.createElement('div');
             labelSpan.className = 'icon-label';
             labelSpan.innerText = `SDG ${goal.id}`;
             
-            iconWrapper.appendChild(circleDiv);
-            iconWrapper.appendChild(labelSpan);  // 若不要编号，删除此行即可
+            iconWrapper.appendChild(img);
+            iconWrapper.appendChild(labelSpan);  // 不要编号就删除这行
 
-            // 点击事件
             iconWrapper.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const targetGoal = sdgData.find(g => g.id === goal.id);
