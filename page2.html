@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>可持续发展目标 · SDGs 愿景展板</title>
-    <!-- Font Awesome 6 (free icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts 提升精致度 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
@@ -23,13 +21,11 @@
             scroll-behavior: smooth;
         }
 
-        /* 主容器 */
         .container {
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        /* 头部 */
         .hero {
             text-align: center;
             margin-bottom: 3rem;
@@ -68,7 +64,7 @@
             margin-bottom: 0.8rem;
         }
 
-        /* 网格布局 — 响应式 */
+        /* 网格布局 */
         .sdg-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 220px));
@@ -86,7 +82,6 @@
             cursor: pointer;
             transition: all 0.25s ease;
             box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.02);
-            backdrop-filter: blur(0px);
             border: 1px solid rgba(166, 194, 220, 0.3);
         }
         .sdg-card:hover {
@@ -94,7 +89,7 @@
             box-shadow: 0 20px 28px -12px rgba(0, 32, 64, 0.15), 0 0 0 1px #cbdde9;
             border-color: #b9d3f0;
         }
-        /* 图标区域 (圆形背景) */
+        /* 图标圆形背景 */
         .icon-circle {
             background: linear-gradient(145deg, #edf4fc, #e2edf7);
             width: 90px;
@@ -111,13 +106,12 @@
             background: linear-gradient(145deg, #e6f0fa, #dae8f2);
             transform: scale(1.02);
         }
-        .icon-circle i {
-            font-size: 3rem;
-            color: #1f6392;
-            transition: 0.2s;
-        }
-        .sdg-card:hover .icon-circle i {
-            color: #0d4c73;
+        /* 自定义图片样式 */
+        .icon-circle img {
+            width: 52px;
+            height: auto;
+            display: block;
+            object-fit: contain;
         }
         .goal-number {
             font-size: 0.75rem;
@@ -145,12 +139,11 @@
             opacity: 0.8;
         }
 
-        /* 悬浮视窗样式 (绝对定位, 动态) */
+        /* 悬浮视窗样式 */
         .sdg-popup {
             position: fixed;
             z-index: 1000;
             background: #ffffff;
-            backdrop-filter: blur(0px);
             border-radius: 28px;
             padding: 0;
             max-width: 320px;
@@ -159,9 +152,8 @@
             box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(77, 151, 193, 0.2);
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.2s ease, visibility 0.2s, transform 0.1s ease;
+            transition: opacity 0.2s ease, visibility 0.2s;
             pointer-events: auto;
-            transform-origin: left top;
         }
         .sdg-popup.active {
             opacity: 1;
@@ -181,16 +173,18 @@
         }
         .popup-icon {
             background: #eef2ff;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
-        .popup-icon i {
-            font-size: 1.5rem;
-            color: #1f6392;
+        .popup-icon img {
+            width: 32px;
+            height: auto;
+            display: block;
         }
         .popup-title {
             font-weight: 800;
@@ -231,13 +225,6 @@
             background: #e2eaf1;
             color: #1c4f6e;
         }
-        .popup-arrow {
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-style: solid;
-        }
-        /* 小提示 */
         .info-tip {
             text-align: center;
             margin-top: 3rem;
@@ -250,11 +237,13 @@
             padding: 0.4rem 1.2rem;
             border-radius: 40px;
         }
-        .info-tip i {
-            margin-right: 6px;
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #5e7f9a;
         }
 
-        /* 移动端适配: 卡片稍宽 */
         @media (max-width: 700px) {
             body {
                 padding: 1.2rem;
@@ -267,29 +256,15 @@
                 width: 70px;
                 height: 70px;
             }
-            .icon-circle i {
-                font-size: 2.2rem;
+            .icon-circle img {
+                width: 42px;
             }
             .goal-title {
                 font-size: 0.85rem;
             }
-            .popup-inner {
-                padding: 1rem;
-            }
             .sdg-popup {
                 max-width: 280px;
             }
-        }
-
-        /* 增强可访问性 */
-        button, .sdg-card {
-            user-select: none;
-        }
-        footer {
-            margin-top: 3rem;
-            text-align: center;
-            font-size: 0.75rem;
-            color: #5e7f9a;
         }
     </style>
 </head>
@@ -298,25 +273,27 @@
 <div class="container">
     <div class="hero">
         <div class="badge"><i class="fas fa-globe-americas"></i> 联合国2030议程</div>
-        <h1><i class="fas fa-leaf"></i> 可持续发展目标 <span style="font-weight: 500;">SDGs</span></h1>
+        <h1>🌱 可持续发展目标 <span style="font-weight: 500;">SDGs</span></h1>
         <p>点击任意目标图标，弹出详细介绍视窗 — 为了人类与地球更美好的未来，17个变革行动。</p>
     </div>
 
     <div class="sdg-grid" id="sdgGrid"></div>
     <div class="info-tip">
-        <i class="fas fa-hand-pointer"></i> 轻点任何一个目标卡片 → 浮动视窗立即显示详细说明
+        ✨ 轻点任何一个目标卡片 → 浮动视窗立即显示详细说明
     </div>
     <footer>
-        🌱 消除贫困 · 保护地球 · 确保繁荣 | 共同落实可持续发展目标
+        🌍 消除贫困 · 保护地球 · 确保繁荣 | 共同落实可持续发展目标
     </footer>
 </div>
 
-<!-- 悬浮视窗DOM (动态利用) -->
+<!-- 悬浮视窗 DOM -->
 <div id="sdgPopup" class="sdg-popup">
     <div class="popup-inner">
-        <button class="close-popup" id="closePopupBtn"><i class="fas fa-times"></i></button>
+        <button class="close-popup" id="closePopupBtn">✕</button>
         <div class="popup-header">
-            <div class="popup-icon" id="popupIcon"><i class="fas fa-bullhorn"></i></div>
+            <div class="popup-icon" id="popupIcon">
+                <img src="IMAGE/goal1.png" alt="目标图标" id="popupImg">
+            </div>
             <div>
                 <div class="popup-title" id="popupTitle">目标 1</div>
                 <div class="popup-sub" id="popupSub">无贫穷</div>
@@ -330,327 +307,156 @@
 
 <script>
     // --------------------------------------------------------------
-    // 17个可持续发展目标的完整数据 (标题 + 详细说明 + 对应的FontAwesome图标)
-    // 按官方标准1~17排序
+    // SDG 完整数据 (共17个目标)
+    // 图片路径使用 IMAGE/goalX.png
     // --------------------------------------------------------------
     const sdgData = [
-        {   
-    id: 1,
-    description: "...",
-    iconFile: "IMAGE/goal1.png" 
-        },
-        {
-    id: 2,
-    description: "...",
-    iconFile: "IMAGE/goal2.png" 
-        },
-        {
-    id: 3,
-    description: "...",
-    iconFile: "IMAGE/goal3.png" 
-        },
-        {
-    id: 4,
-    description: "...",
-    iconFile: "IMAGE/goal4.png" 
-        },
-        {
-    id: 5,
-    description: "...",
-    iconFile: "IMAGE/goal5.png" 
-        },
-        {
-            id: 6,
-            title: "清洁饮水和卫生设施",
-            shortDesc: "人人享有水和环境卫生",
-            description: "为所有人提供水和环境卫生并对其进行可持续管理。实现安全饮用水普遍获取，减少水污染，改善水质及用水效率。",
-            icon: "fas fa-tint"
-        },
-        {
-            id: 7,
-            title: "经济适用的清洁能源",
-            shortDesc: "可负担的现代能源",
-            description: "确保人人获得负担得起、可靠和可持续的现代能源。大幅增加可再生能源比例，提升能源效率，加强清洁能源技术合作。",
-            icon: "fas fa-solar-panel"
-        },
-        {
-            id: 8,
-            title: "体面工作和经济增长",
-            shortDesc: "促进持久经济增长",
-            description: "促进持久、包容和可持续经济增长，实现充分和生产性就业，确保人人获得体面工作。支持创业、消除强迫劳动。",
-            icon: "fas fa-briefcase"
-        },
-        {
-            id: 9,
-            title: "产业、创新和基础设施",
-            shortDesc: "可持续基建与工业化",
-            description: "建造具备抵御灾害能力的基础设施，促进包容可持续工业化，推动创新。升级技术，支持中小型企业获得金融资源。",
-            icon: "fas fa-industry"
-        },
-        {
-            id: 10,
-            title: "减少不平等",
-            shortDesc: "减少国家内部及外部不平等",
-            description: "减少国家内部和国家之间的不平等。提升社会、经济和政治包容性，确保机会均等，促进有序、安全移民。",
-            icon: "fas fa-chart-line"
-        },
-        {
-            id: 11,
-            title: "可持续城市和社区",
-            shortDesc: "包容、安全、韧性的城市",
-            description: "建设包容、安全、有抵御灾害能力和可持续的城市。改善贫民窟居住条件，提供绿色公共空间与可持续交通。",
-            icon: "fas fa-city"
-        },
-        {
-            id: 12,
-            title: "负责任消费和生产",
-            shortDesc: "可持续消费及生产模式",
-            description: "确保可持续消费和生产模式。高效利用资源，减少粮食浪费，对化学品和废物实施环保管理，推广生命周期思维。",
-            icon: "fas fa-recycle"
-        },
-        {
-            id: 13,
-            title: "气候行动",
-            shortDesc: "应对气候变化及其影响",
-            description: "采取紧急行动应对气候变化及其影响。加强抵御气候灾害能力，将应对措施纳入国家政策，提升气候变化教育。",
-            icon: "fas fa-tree"
-        },
-        {
-            id: 14,
-            title: "水下生物",
-            shortDesc: "保护海洋和海洋资源",
-            description: "保护和可持续利用海洋及海洋资源以促进可持续发展。减少海洋污染，保护沿海生态系统，打击非法捕捞。",
-            icon: "fas fa-fish"
-        },
-        {
-            id: 15,
-            title: "陆地生物",
-            shortDesc: "保护陆地生态系统",
-            description: "保护、恢复和促进可持续利用陆地生态系统，可持续管理森林，防治荒漠化，遏制生物多样性丧失，停止偷猎。",
-            icon: "fas fa-leaf"
-        },
-        {
-            id: 16,
-            title: "和平、正义与强大机构",
-            shortDesc: "创建和平包容的社会",
-            description: "创建和平、包容的社会以促进可持续发展，让所有人都能诉诸司法，在各级建立有效、负责和包容的机构。减少暴力及腐败。",
-            icon: "fas fa-gavel"
-        },
-        {
-            id: 17,
-            title: "促进目标实现的伙伴关系",
-            shortDesc: "加强全球可持续发展伙伴关系",
-            description: "加强执行手段，重振可持续发展全球伙伴关系。动员资源，促进技术转让、能力建设，建立多利益攸关方伙伴关系。",
-            icon: "fas fa-handshake"
-        }
+        { id: 1, title: "无贫穷", shortDesc: "消除各地一切形式的贫穷", description: "在全世界消除一切形式的贫困。确保穷人和弱势群体享有平等经济资源、基本服务、土地所有权、技术等权利，增强抵御灾害的能力。", iconFile: "IMAGE/goal1.png" },
+        { id: 2, title: "零饥饿", shortDesc: "消除饥饿，实现粮食安全", description: "消除饥饿，实现粮食安全，改善营养状况和促进可持续农业。保障所有人全年都有安全、营养且充足的食物。", iconFile: "IMAGE/goal2.png" },
+        { id: 3, title: "良好健康与福祉", shortDesc: "确保健康的生活方式", description: "确保健康的生活方式，促进各年龄段人群的福祉。降低母婴死亡率，终结艾滋病、结核病等流行病，并普及基本医疗服务。", iconFile: "IMAGE/goal3.png" },
+        { id: 4, title: "优质教育", shortDesc: "包容公平的优质教育", description: "确保包容和公平的优质教育，让全民终身享有学习机会。实现所有男女童完成免费中小学教育，大幅提高拥有相关就业技能的人数。", iconFile: "IMAGE/goal4.png" },
+        { id: 5, title: "性别平等", shortDesc: "实现性别平等，赋能妇女", description: "实现性别平等，增强所有妇女和女童的权能。消除一切形式的歧视与暴力，确保女性平等参与领导与决策。", iconFile: "IMAGE/goal5.png" },
+        { id: 6, title: "清洁饮水和卫生设施", shortDesc: "人人享有水和环境卫生", description: "为所有人提供水和环境卫生并对其进行可持续管理。实现安全饮用水普遍获取，减少水污染，改善水质及用水效率。", iconFile: "IMAGE/goal6.png" },
+        { id: 7, title: "经济适用的清洁能源", shortDesc: "可负担的现代能源", description: "确保人人获得负担得起、可靠和可持续的现代能源。大幅增加可再生能源比例，提升能源效率，加强清洁能源技术合作。", iconFile: "IMAGE/goal7.png" },
+        { id: 8, title: "体面工作和经济增长", shortDesc: "促进持久经济增长", description: "促进持久、包容和可持续经济增长，实现充分和生产性就业，确保人人获得体面工作。支持创业、消除强迫劳动。", iconFile: "IMAGE/goal8.png" },
+        { id: 9, title: "产业、创新和基础设施", shortDesc: "可持续基建与工业化", description: "建造具备抵御灾害能力的基础设施，促进包容可持续工业化，推动创新。升级技术，支持中小型企业获得金融资源。", iconFile: "IMAGE/goal9.png" },
+        { id: 10, title: "减少不平等", shortDesc: "减少国家内部及外部不平等", description: "减少国家内部和国家之间的不平等。提升社会、经济和政治包容性，确保机会均等，促进有序、安全移民。", iconFile: "IMAGE/goal10.png" },
+        { id: 11, title: "可持续城市和社区", shortDesc: "包容、安全、韧性的城市", description: "建设包容、安全、有抵御灾害能力和可持续的城市。改善贫民窟居住条件，提供绿色公共空间与可持续交通。", iconFile: "IMAGE/goal11.png" },
+        { id: 12, title: "负责任消费和生产", shortDesc: "可持续消费及生产模式", description: "确保可持续消费和生产模式。高效利用资源，减少粮食浪费，对化学品和废物实施环保管理，推广生命周期思维。", iconFile: "IMAGE/goal12.png" },
+        { id: 13, title: "气候行动", shortDesc: "应对气候变化及其影响", description: "采取紧急行动应对气候变化及其影响。加强抵御气候灾害能力，将应对措施纳入国家政策，提升气候变化教育。", iconFile: "IMAGE/goal13.png" },
+        { id: 14, title: "水下生物", shortDesc: "保护海洋和海洋资源", description: "保护和可持续利用海洋及海洋资源以促进可持续发展。减少海洋污染，保护沿海生态系统，打击非法捕捞。", iconFile: "IMAGE/goal14.png" },
+        { id: 15, title: "陆地生物", shortDesc: "保护陆地生态系统", description: "保护、恢复和促进可持续利用陆地生态系统，可持续管理森林，防治荒漠化，遏制生物多样性丧失，停止偷猎。", iconFile: "IMAGE/goal15.png" },
+        { id: 16, title: "和平、正义与强大机构", shortDesc: "创建和平包容的社会", description: "创建和平、包容的社会以促进可持续发展，让所有人都能诉诸司法，在各级建立有效、负责和包容的机构。减少暴力及腐败。", iconFile: "IMAGE/goal16.png" },
+        { id: 17, title: "促进目标实现的伙伴关系", shortDesc: "加强全球可持续发展伙伴关系", description: "加强执行手段，重振可持续发展全球伙伴关系。动员资源，促进技术转让、能力建设，建立多利益攸关方伙伴关系。", iconFile: "IMAGE/goal17.png" }
     ];
 
-    // 获取DOM元素
+    // DOM 元素
     const gridContainer = document.getElementById('sdgGrid');
     const popup = document.getElementById('sdgPopup');
-    const popupIconElem = document.getElementById('popupIcon');
+    const popupImg = document.getElementById('popupImg');
     const popupTitleElem = document.getElementById('popupTitle');
     const popupSubElem = document.getElementById('popupSub');
     const popupDescElem = document.getElementById('popupDesc');
     const closeBtn = document.getElementById('closePopupBtn');
 
-    // 当前是否显示popup
-    let activeCardElement = null;
+    let activeCard = null;
 
-    // 辅助: 更新弹窗内容 (基于目标数据)
+    // 更新弹窗内容
     function updatePopupContent(goal) {
-        // 更新图标
-        if (popupIconElem) {
-            popupIconElem.innerHTML = `<i class="${goal.icon}" style="font-size: 1.5rem;"></i>`;
-        }
-        // 更新标题区域
+        popupImg.src = goal.iconFile;
+        popupImg.alt = goal.title;
         popupTitleElem.innerText = `目标 ${goal.id}`;
         popupSubElem.innerText = goal.title;
         popupDescElem.innerText = goal.description;
     }
 
-    // 显示弹窗并定位在指定卡片元素的“旁边”（右侧优先，自动适配可视区）
+    // 显示弹窗并定位在卡片旁边
     function showPopupNearCard(cardElement, goalData) {
         if (!cardElement || !popup) return;
-
-        // 更新内容
         updatePopupContent(goalData);
-        
-        // 获取卡片相对于视口的位置
+
         const cardRect = cardElement.getBoundingClientRect();
         const popupWidth = popup.offsetWidth;
         const popupHeight = popup.offsetHeight;
-        
-        // 初始定位参数: 默认放在卡片右侧（margin-left 16px）
-        let leftPos = cardRect.right + 14;
-        let topPos = cardRect.top + (cardRect.height / 2) - (popupHeight / 2);
-        
-        // 边界检查: 右侧超出视口 则尝试放在左侧
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
-        
-        // 如果右侧空间不足 (弹出窗超出右边界)
+
+        let leftPos = cardRect.right + 14;
+        let topPos = cardRect.top + (cardRect.height / 2) - (popupHeight / 2);
+
+        // 超出右侧则显示在左侧
         if (leftPos + popupWidth > viewportWidth - 12) {
-            // 放到卡片左侧
             leftPos = cardRect.left - popupWidth - 14;
         }
-        
-        // 如果左侧还是不足 (极窄屏幕)，则贴近左边界并调整
-        if (leftPos < 10) {
-            leftPos = 12;
-        }
-        
-        // 垂直方向边界调整: 避免超出顶部或底部
-        if (topPos < 10) {
-            topPos = 12;
-        }
+        // 超出左侧则贴边
+        if (leftPos < 10) leftPos = 12;
+        // 垂直边界修正
+        if (topPos < 10) topPos = 12;
         if (topPos + popupHeight > viewportHeight - 10) {
             topPos = viewportHeight - popupHeight - 12;
         }
-        
-        // 应用位置
+
         popup.style.left = leftPos + 'px';
         popup.style.top = topPos + 'px';
-        
-        // 显示弹窗 (添加可见类)
         popup.classList.add('active');
-        activeCardElement = cardElement;
+        activeCard = cardElement;
     }
-    
-    // 隐藏弹窗函数
+
     function hidePopup() {
         if (popup) {
             popup.classList.remove('active');
-            activeCardElement = null;
+            activeCard = null;
         }
     }
 
-    // 生成所有卡片 (动态渲染)
+    // 动态生成所有卡片
     function buildGrid() {
         if (!gridContainer) return;
         gridContainer.innerHTML = '';
-        
+
         sdgData.forEach(goal => {
             const card = document.createElement('div');
             card.className = 'sdg-card';
-            // 存一份数据属性，方便点击获取详情
             card.setAttribute('data-goal-id', goal.id);
-            // 构建内部结构
-            // 圆形容器 + 图标
-            const iconCircleDiv = document.createElement('div');
-            iconCircleDiv.className = 'icon-circle';
-            const iconElem = document.createElement('i');
-            iconElem.className = goal.icon;
-            iconCircleDiv.appendChild(iconElem);
-            
+
+            // 圆形图标区
+            const iconCircle = document.createElement('div');
+            iconCircle.className = 'icon-circle';
+            const img = document.createElement('img');
+            img.src = goal.iconFile;
+            img.alt = goal.title;
+            iconCircle.appendChild(img);
+
             const goalNumberSpan = document.createElement('div');
             goalNumberSpan.className = 'goal-number';
             goalNumberSpan.innerText = `SDG ${goal.id}`;
-            
+
             const titleDiv = document.createElement('div');
             titleDiv.className = 'goal-title';
             titleDiv.innerText = goal.title;
-            
+
             const shortDiv = document.createElement('div');
             shortDiv.className = 'goal-short';
             shortDiv.innerText = goal.shortDesc;
-            
-            card.appendChild(iconCircleDiv);
+
+            card.appendChild(iconCircle);
             card.appendChild(goalNumberSpan);
             card.appendChild(titleDiv);
             card.appendChild(shortDiv);
-            
-            // 绑定点击事件 (注意: 点击卡片区域即显示旁边浮窗)
+
+            // 点击卡片显示弹窗
             card.addEventListener('click', (e) => {
-                e.stopPropagation();   // 阻止冒泡到全局监听，避免立即被外部关闭
-                // 获取完整goal数据
+                e.stopPropagation();
                 const targetGoal = sdgData.find(g => g.id === goal.id);
-                if (targetGoal) {
-                    // 如果当前已经有弹窗并且点击同一个卡片，可以维持或者关闭？更合理的: 更新内容+重新定位
-                    // 如果点击同一个卡片且弹窗已显示，就更新位置+内容（不会额外关闭）
-                    showPopupNearCard(card, targetGoal);
-                }
+                if (targetGoal) showPopupNearCard(card, targetGoal);
             });
-            
+
             gridContainer.appendChild(card);
         });
     }
-    
-    // 全局点击关闭逻辑: 点击到非卡片区域且非弹出窗内部时 关闭浮窗
-    function handleDocumentClick(e) {
-        // 如果弹窗未激活，不做处理
+
+    // 全局点击关闭弹窗（点击非卡片非弹窗区域）
+    document.addEventListener('click', (e) => {
         if (!popup.classList.contains('active')) return;
-        
-        // 获取点击的目标
-        const target = e.target;
-        // 检查是否点击到任何卡片(.sdg-card 或其子元素)
-        const isCardClick = target.closest('.sdg-card') !== null;
-        // 检查是否点击到弹出窗内部（或者关闭按钮）
-        const isPopupClick = target.closest('.sdg-popup') !== null;
-        
-        // 如果点到了弹窗内部，保留弹窗（不关闭），尤其点击关闭按钮时由单独事件负责。
-        if (isPopupClick) {
-            return;
-        }
-        
-        // 如果点到卡片，卡片点击事件已经单独处理（且阻止冒泡，不会触发到这里），为了安全:
-        // 卡片点击已经stopPropagation，所以点卡片不会进这个分支，因此这里仅处理非卡片非弹窗区域 -> 关闭
-        if (!isCardClick && !isPopupClick) {
-            hidePopup();
-        }
-    }
-    
-    // 窗口滚动/缩放时自动关闭悬浮窗 (避免错位或残留)
-    function handleHideOnScrollOrResize() {
-        hidePopup();
-    }
-    
-    // 关闭按钮事件
+        const isCardClick = e.target.closest('.sdg-card') !== null;
+        const isPopupClick = e.target.closest('.sdg-popup') !== null;
+        if (!isCardClick && !isPopupClick) hidePopup();
+    });
+
+    // 滚动 / 窗口大小改变时关闭弹窗
+    window.addEventListener('resize', () => hidePopup());
+    window.addEventListener('scroll', () => hidePopup(), { passive: true });
+
+    // 关闭按钮
     if (closeBtn) {
         closeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             hidePopup();
         });
     }
-    
-    // 当屏幕resize或滚动时关闭popup，保证体验
-    window.addEventListener('resize', () => {
-        hidePopup();
-    });
-    window.addEventListener('scroll', () => {
-        hidePopup();
-    }, { passive: true });
-    
-    // 监听document点击用于关闭浮窗
-    document.addEventListener('click', handleDocumentClick);
-    
-    // 为了防止移动端触摸时悬浮窗不消失，同样适配
-    document.addEventListener('touchstart', (e) => {
-        // 稍后统一click也会触发，但先保留防止浮窗残留
-        setTimeout(() => {
-            if (!popup.classList.contains('active')) return;
-            const target = e.target;
-            const isCard = target.closest('.sdg-card');
-            const isPopupArea = target.closest('.sdg-popup');
-            if (!isCard && !isPopupArea) {
-                hidePopup();
-            }
-        }, 10);
-    });
-    
-    // 额外优化: 如果弹出窗出现后点击另一个卡片，事件内stopPropagation不会触发document关闭，新卡片会调用show更新位置和内容
-    // 保证多个卡片切换流畅
-    
-    // 初始化渲染
+
+    // 初始化
     buildGrid();
-    
-    // 预置popup默认隐藏及基础样式确保不遮挡
-    if (popup) {
-        popup.style.position = 'fixed';
-    }
-    
-    // 可增加辅助: 如果popup内容过多导致超出边界, 动态修正显示已在showPopupNearCard中完成。
-    console.log("SDGs 网页已加载 — 点击任意目标图标，旁边浮现详细介绍视窗");
 </script>
 </body>
 </html>
