@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Validation Practice</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        #message { margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>Please input a number between 150 and 300:</h2>
+
+    <input id="numb" type="text">
+
+    <button type="button" onclick="myFunction()">Submit</button>
+
+    <p id="message"></p>
+
+    <script>
+        function myFunction() {
+            // 獲取輸入框的值
+            let x = document.getElementById("numb").value;
+            let text;
+
+            // 驗證邏輯
+            if (isNaN(x) || x === "") {
+                text = "請輸入有效的數字";
+            } else if (x < 150) {
+                text = "Value too small";
+            } else if (x > 300) {
+                text = "Value too large";
+            } else {
+                text = "Input OK";
+            }
+
+            // 將結果顯示在頁面上
+            document.getElementById("message").innerHTML = text;
+        }
+    </script>
+
+</body>
+</html>
