@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Programming Exercise</title>
+    <style>
+        /* 簡單的排版與外觀設定，盡量還原圖片中的樣式 */
+        .container {
+            border: 1px solid #ccc;
+            padding: 30px;
+            width: 150px;
+            text-align: center;
+            font-family: serif; /* 使用襯線字體配合圖片樣式 */
+            margin: 20px;
+        }
+        #displayText {
+            font-size: 24px;
+            margin-bottom: 20px;
+            height: 30px; /* 固定高度避免文字改變時發生跳動 */
+        }
+        button {
+            padding: 5px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="displayText">Hello</div>
+        <button id="actionButton">Button</button>
+    </div>
+
+    <script>
+        // 取得需要操作的 HTML 元素
+        const displayText = document.getElementById('displayText');
+        const actionButton = document.getElementById('actionButton');
+
+        // 1. 滑鼠移入 (Mouse over) 事件
+        actionButton.addEventListener('mouseover', () => {
+            // 如果還沒被點擊過，確保文字是 Hello 並改變顏色
+            if (displayText.innerText !== 'Mouse Click') {
+                displayText.innerText = 'Hello';
+            }
+            displayText.style.color = 'magenta';
+        });
+
+        // 2. 滑鼠點擊 (Click) 事件
+        actionButton.addEventListener('click', () => {
+            displayText.innerText = 'Mouse Click';
+            displayText.style.color = 'magenta';
+        });
+
+        // 3. 滑鼠移出 (Mouse out) 事件（雖然題目沒特別規定，但加上重置功能體驗會更好）
+        actionButton.addEventListener('mouseout', () => {
+            displayText.innerText = 'Hello';
+            displayText.style.color = 'black';
+        });
+    </script>
+
+</body>
+</html>
