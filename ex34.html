@@ -1,39 +1,41 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>JavaScript 物件操作練習</title>
+    <title>刪除 age 屬性</title>
 </head>
 <body>
+    <h3>原始物件：</h3>
+    <pre id="before"></pre>
 
-    <h2>物件屬性列表</h2>
-    <div id="output"></div>
+    <h3>刪除 age 屬性後：</h3>
+    <pre id="after"></pre>
 
     <script>
-        // 1. 定義題目提供的物件
         var Person = {
-            firstName : "Tony",
-            lastName : "Lee",
-            age : 50,
-            eyeColor : "Blue"
+            firstName: "Tony",
+            lastName: "Lee",
+            age: 50,
+            eyeColor: "Blue"
         };
 
-        const outputDiv = document.getElementById('output');
+        // 顯示原始屬性列表
+        function showObject(obj, elementId) {
+            let text = "";
+            for (let key in obj) {
+                text += key + " : " + obj[key] + "\n";
+            }
+            document.getElementById(elementId).innerText = text;
+        }
 
-        // 2. 列出所有屬性
-        let allProperties = Object.keys(Person).join(", ");
-        outputDiv.innerHTML += "<p><b>原始屬性:</b> " + allProperties + "</p>";
+        // 顯示刪除前的物件
+        showObject(Person, "before");
 
-        // 3. 刪除 age 屬性
+        // 刪除 age 屬性
         delete Person.age;
 
-        // 4. 刪除後再次列印物件內容
-        // 使用 JSON.stringify 讓物件以文字形式顯示在網頁上
-        outputDiv.innerHTML += "<p><b>刪除 age 後的物件內容:</b> " + JSON.stringify(Person) + "</p>";
-        
-        // 同時在控制台 (Console) 輸出結果以便檢查
-        console.log("刪除後的物件:", Person);
+        // 顯示刪除後的物件
+        showObject(Person, "after");
     </script>
-
 </body>
 </html>
