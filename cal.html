@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Properties Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        .container {
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background: #eef9f1;
+            border-left: 5px solid #4CAF50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>圓形計算機 (Circle Calculator)</h2>
+    <label for="radius">請輸入圓的半徑 (Radius):</label>
+    <input type="number" id="radius" placeholder="例如: 5" min="0" step="any">
+    
+    <button onclick="calculateAll()">開始計算</button>
+
+    <div id="output" class="result" style="display: none;"></div>
+</div>
+
+<script>
+    // 函數 1：計算圓周長 (題目中拼寫為 calcCircumference，這裡完全照題目要求)
+    function calcCircumference(radius) {
+        // 圓周長公式：2 * π * r
+        let circumference = 2 * Math.PI * radius;
+        // 為了美觀，將結果四捨五入到小數點後兩位
+        return "The circumference is " + circumference.toFixed(2);
+    }
+
+    // 函數 2：計算圓面積
+    function calcArea(radius) {
+        // 圓面積公式：π * r^2
+        let area = Math.PI * Math.pow(radius, 2);
+        // 為了美觀，將結果四捨五入到小數點後兩位
+        return "The area is " + area.toFixed(2);
+    }
+
+    // 觸發按鈕後的執行主程式
+    function calculateAll() {
+        // 取得使用者輸入的半徑數值
+        let radiusInput = document.getElementById("radius").value;
+        let radius = parseFloat(radiusInput);
+        let outputDiv = document.getElementById("output");
+
+        // 檢查輸入是否合法
+        if (isNaN(radius) || radius <= 0) {
+            outputDiv.style.display = "block";
+            outputDiv.style.color = "red";
+            outputDiv.innerHTML = "請輸入大於 0 的有效數字！";
+            return;
+        }
+
+        // 呼叫題目要求的兩個函數
+        let circumferenceResult = calcCircumference(radius);
+        let areaResult = calcArea(radius);
+
+        // 將結果顯示在網頁上
+        outputDiv.style.display = "block";
+        outputDiv.style.color = "#333";
+        outputDiv.innerHTML = circumferenceResult + "<br>" + areaResult;
+    }
+</script>
+
+</body>
+</html>
