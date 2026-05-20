@@ -51,11 +51,11 @@
 <body>
 
 <div class="container">
-    <h2>圓形計算機 (Circle Calculator)</h2>
-    <label for="radius">請輸入圓的半徑 (Radius):</label>
+    <h2>Circle Calculator</h2>
+    <label for="radius">Please enter the radius of the circle.:</label>
     <input type="number" id="radius" placeholder="例如: 5" min="0" step="any">
     
-    <button onclick="calculateAll()">開始計算</button>
+    <button onclick="calculateAll()">start</button>
 
     <div id="output" class="result" style="display: none;"></div>
 </div>
@@ -88,7 +88,7 @@
         if (isNaN(radius) || radius <= 0) {
             outputDiv.style.display = "block";
             outputDiv.style.color = "red";
-            outputDiv.innerHTML = "請輸入大於 0 的有效數字！";
+            outputDiv.innerHTML = "please enter valid number";
             return;
         }
 
